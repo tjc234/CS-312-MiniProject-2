@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <title>Random Joke</title>
-    <link rel="stylesheet" href="/public/styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
@@ -10,17 +10,25 @@
 
         <!-- form to fetch a joke -->
          <form action="/" method="POST">
-            <button type="submit">Get a Joke</button>
+            <label for="numJokes">Select number of jokes:</label>
+            <select name="numJokes" id="numJokes">
+
+                <% for (let i = 1; i <= 10; i++) { %>
+                    <option value="<%= i %>"><%= i %></option>
+                <% } %>
+            </select>
+            <button type="submit">Get Jokes</button>
         </form>
 
         <!-- display the joke -->
-         <% if (joke) { %>
-            <div class="joke">
-                <h2><%= joke.setup %></h2>
-                <p><%= joke.punchline %></p>
-            </div>
+         <% if (jokes && jokes.length) { %>
+            <% jokes.forEach(joke => { %>
+                <div class="joke">
+                    <h2><%= joke.setup %></h2>
+                    <p><%= joke.punchline %></p>
+                </div>
+            <% }) %>
         <% } %>
-       
     </div>
 </body>
 </html>
