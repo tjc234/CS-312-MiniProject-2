@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <title>Random Joke</title>
+    <link rel="stylesheet" href="/public/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Get a Random Joke!</h1>
+
+        <!-- form to fetch a joke -->
+         <form action="/joke" method="GET">
+            <button type="submit">Get a Joke</button>
+        </form>
+
+        <!-- display the joke -->
+         <% if (joke) { %>
+            <div class="joke">
+                <h2><%= joke.setup %></h2>
+                <p><%= joke.punchline %></p>
+            </div>
+        <% } %>
+       
+    </div>
+</body>
+</html>
