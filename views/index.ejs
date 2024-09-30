@@ -10,6 +10,7 @@
 
         <!-- form to fetch a joke -->
          <form action="/" method="POST">
+            <div class="form-group">
             <label for="numJokes">Select number of jokes:</label>
             <select name="numJokes" id="numJokes">
 
@@ -18,9 +19,11 @@
                 <% } %>
             </select>
             <button type="submit">Get Jokes</button>
+            </div>
         </form>
 
-        <!-- display the joke -->
+        <!-- display the jokes -->
+         <div class="joke-container">
          <% if (jokes && jokes.length) { %>
             <% jokes.forEach(joke => { %>
                 <div class="joke">
@@ -28,7 +31,8 @@
                     <p><%= joke.punchline %></p>
                 </div>
             <% }) %>
-        <% } %>
+         <% } %>
+         </div>
     </div>
 </body>
 </html>
