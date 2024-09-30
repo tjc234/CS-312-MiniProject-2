@@ -22,12 +22,18 @@ app.get( '/', ( req, res ) => {
 
 // form submisison route (POST)
 app.post( '/', async ( req, res ) => {
+    try {
     // get joke from API
     const response = await axios.get( 'https://official-joke-api.appspot.com/random_joke' );
-    joke = response.data;
+    const joke = response.data;
 
     // render index.ejs with joke
     res.render( 'index', { joke: joke } );
+    } catch( error ) {
+        // handle error
+        console.error( 'Error fetching joke(s):', error );
+        res.render( 'index', { joke: null } );
+    }
 });
 
 // start server
