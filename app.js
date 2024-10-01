@@ -16,21 +16,23 @@ app.set( 'view engine', 'ejs' );
 
 // routing to homepage (GET)
 app.get( '/', ( req, res ) => {
-    // render index.ejs with joke as null
+    // render index with joke as null
     res.render( 'index', { jokes: null } );
 }); 
 
 // form submisison route (POST)
 app.post( '/', async ( req, res ) => {
-    // initialize variables
+    // initialize jokes array
     const jokes = [];
+
+    // parse number of jokes from form
     const numJokes = parseInt( req.body.numJokes );
 
     // start try block
     try {
     // fetch requested number of jokes
     for( let i = 0; i < numJokes; i++ ) {
-        // fetch joke from API
+        // fetch joke from official joke api
         const response = await axios.get( 'https://official-joke-api.appspot.com/random_joke' ) ;
 
         // add joke to jokes array
